@@ -1,0 +1,25 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "al",
+            "request": "launch",
+            //"name": "Tricor Pacific",
+            //"tenant": "catapultdemo.com",
+            //"tenant": "columbiacontainers.com",
+            //"tenant": "thomasfoodscanada.com",
+            "tenant": "f05ddbab-9e52-48b9-a4fb-ea6d7913a200", //signal.vin
+            "name": "Sandbox",
+            "environmentType": "Sandbox",
+            "environmentName": "SandboxV20",
+            "startupObjectId": 1207, // Direct Debit Collections
+            "startupObjectType": "Page",
+            //"schemaUpdateMode": "Recreate",
+            "schemaUpdateMode": "ForceSync",
+            "breakOnError": true,
+            "launchBrowser": true,
+            "enableLongRunningSqlStatements": true,
+            "enableSqlInformationDebugger": true
+        }
+    ]
+}

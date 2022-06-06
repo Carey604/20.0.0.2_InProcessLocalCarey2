@@ -1,0 +1,9 @@
+{
+    "CRS.ObjectNamePrefix": "CAT ",
+    //"CRS.OnSaveAlFileAction": "Reorganize",
+    "CRS.OnSaveAlFileAction": "DoNothing",
+    "CRS.FileNamePattern": "<ObjectTypeShort><ObjectId>.<ObjectNameShort>.<ObjectTypeShortPascalCase>.al",
+    "CRS.FileNamePatternExtensions": "<ObjectTypeShort><BaseId>-Ext<ObjectId>.<ObjectNameShort>.<ObjectTypeShortPascalCase>.al",
+    "CRS.FileNamePatternPageCustomizations": "<ObjectTypeShort><BaseId>-Ext<ObjectId>.<ObjectNameShort>.<ObjectTypeShortPascalCase>.al",
+    "CRS.RenameWithGit": true,
+}

@@ -1,0 +1,67 @@
+{
+    "name": "al.design.patterns",
+    "description": "AL Coding Rules",
+    "generalAction": "Hidden",
+    "rules": [
+        {
+            "id": "AA0005",
+            "action": "Hidden",
+            "justification": "Only use BEGIN..END to enclose compound statements."
+        },
+        {
+            "id": "AA0008",
+            "action": "Hidden",
+            "justification": "AL is not C# or Java, we do not use parentheses when not required..."
+        },
+        {
+            "id": "AA0072",
+            "action": "Hidden",
+            "justification": "The name of xxxx is not valid. The name of variables and parameters must be suffixed with the type or object name."
+
+        },
+        {
+            "id": "AA0214",
+            "action": "Hidden",
+            "justification": "Get around The record x should be modified before saving to the database."
+        },
+        {
+            "id": "AA0215",
+            "action": "Hidden",
+            "justification": "Using Waldo reorganize for filenames..."
+        },
+        {
+            "id": "AA0218",
+            "action": "Hidden",
+            "justification": "The Tooltip property for PageField xxxx must be filled."
+        },
+        {
+            "id": "AA0470",
+            "action": "Hidden",
+            "justification": "Get around variable x with placeholders should have a comment explaining their content."
+        },
+        {
+            "id": "AD0001",
+            "action": "Hidden",
+            "justification": "Get around the rule214 errors"
+        },
+        {
+            "id": "AL0604",
+            "action": "Hidden",
+            "justification": "Get around the use of implicit 'with' will be removed in the future. Qualify with 'Rec.'. This warning will become an error in a future release."
+
+        },
+        {
+            "id": "AL0606",
+            "action": "Hidden",
+            "justification": "Get around the 'with' statement is deprecated and will be removed for cloud development in a future release errors"
+
+        },
+        {
+            "id": "AL0118",
+            "action": "Hidden",
+            "justification": "Get around the the name xxx does not exist in the current context"
+
+        }
+
+    ]
+}
