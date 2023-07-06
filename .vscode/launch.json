@@ -8,14 +8,20 @@
             //"tenant": "catapultdemo.com",
             //"tenant": "columbiacontainers.com",
             //"tenant": "thomasfoodscanada.com",
-            "tenant": "f05ddbab-9e52-48b9-a4fb-ea6d7913a200", //signal.vin
+            //"tenant": "f05ddbab-9e52-48b9-a4fb-ea6d7913a200", //signal.vin
+            //"tenant": "6722eeb0-afe1-48a0-bc9c-ffa5d6f36775", //vcc
+            //"environmentName": "CampusSupport-Sandbox2",
+            "tenant": "dd81043f-2698-452c-8a46-1b7355270912", //tricorp
             "name": "Sandbox",
             "environmentType": "Sandbox",
-            "environmentName": "SandboxV20",
-            "startupObjectId": 1207, // Direct Debit Collections
+            //"environmentName": "Sandbox_01_05_22", 
+            "environmentName": "BCFunctionTest", //BCFunctionTest
+            "startupCompany": "1039583 B.C. Ltd.",
             "startupObjectType": "Page",
+            "startupObjectId": 256, // Payment Journal
             //"schemaUpdateMode": "Recreate",
-            "schemaUpdateMode": "ForceSync",
+            //"startupObjectId": 1207, // Direct Debit Collections
+            "schemaUpdateMode": "Synchronize",
             "breakOnError": true,
             "launchBrowser": true,
             "enableLongRunningSqlStatements": true,

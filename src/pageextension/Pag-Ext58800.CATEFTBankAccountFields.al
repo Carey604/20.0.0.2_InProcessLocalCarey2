@@ -1,5 +1,6 @@
 pageextension 58800 "CAT EFT Bank Account Fields" extends "Bank Account Card"
 {
+    // CAT.001 2022-06-06 CL - add fields to existing pagext. Used for ACH PAD (Pre-authorized debit)
     layout
     {
         addafter(Transfer)
@@ -76,6 +77,54 @@ pageextension 58800 "CAT EFT Bank Account Fields" extends "Bank Account Card"
                     Caption = 'Destination Data Centre';
                     ApplicationArea = All;
                 }
+                //>>CAT.001
+                field("CAT ACH PAD Immediate Dest."; "CAT ACH PAD Immediate Dest.")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the 9 digit routing number of the financial institution receiving the ACH file for processing pre-arranged payment or deposit. Typically, this is your bank''s routing and transit number';
+                }
+                field("CAT ACH PAD Immed. Dest. Name"; Rec."CAT ACH PAD Immed. Dest. Name")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the name of the financial institution receiving the payment file for ACH pre-arranged payment or deposit.';
+                }
+                field("CAT ACH PAD Immediate Origin"; Rec."CAT ACH PAD Immediate Origin")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the 9 digit routing transit number of the institution sending (originating) the ACH file for processing pre-arranged payment or deposit. (Often your ODFI (Originating Depository Financial Institution) will have you insert your company ID in this field.)';
+                }
+                field("CAT ACH PAD Immed. Origin Name"; Rec."CAT ACH PAD Immed. Origin Name")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the name of the financial institution sending the payment file for ACH pre-arranged payment or deposit.';
+                }
+                field("CAT ACH PAD Company Name"; Rec."CAT ACH PAD Company Name")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the name of the Originator known and recognized by the Receiver.';
+
+                }
+                field("CAT ACH PAD Company Id."; Rec."CAT ACH PAD Company Id.")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the Originator. Assigned by the ODFI (Originating Depository Financial Institution).';
+                }
+                field("CAT ACH PAD Orig. Stat. Cd."; Rec."CAT ACH PAD Orig. Stat. Cd.")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the code referring to the ODFI (Originating Depository Financial Institution) initiating the entry.';
+                }
+                field("CAT ACH PAD Orig. DFI Id."; Rec."CAT ACH PAD Orig. DFI Id.")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the routing number of the DFI (Depository Financial Institution) originating the entries within the batch in the payment file for ACH pre-arranged payment or deposit.';
+                }
+                field("CAT ACH PAD Filename Prefix"; Rec."CAT ACH PAD Filename Prefix")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the string to be prefixed to the export filename for pre-arranged payment or deposit';
+                }
+                //<<CAT.001
             }
         }
     }

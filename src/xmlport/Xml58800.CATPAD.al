@@ -2,6 +2,7 @@ xmlport 58800 "CAT Canada BMO AFT PAD 1464"
 {
     // CAT.001 2022-01-20 CL - copied from xmlport 1010 
     //      - new xmlport to meet PAD 1464: Header, Detail, Trailer. 1464 bytes flat file.
+    // CAT.002 2022-07-20 CL - add LF
 
     Caption = 'Canada BMO AFT PAD 1464';
     Direction = Export;
@@ -38,7 +39,7 @@ xmlport 58800 "CAT Canada BMO AFT PAD 1464"
                 {
                     trigger OnBeforePassVariable()
                     begin
-                        RecordA := RecordATxt + CR;
+                        RecordA := RecordATxt + CR + LF; //++CAT.002 added + LF
                     end;
 
                 }
@@ -81,7 +82,7 @@ xmlport 58800 "CAT Canada BMO AFT PAD 1464"
                         trigger OnBeforePassVariable()
                         var
                         begin
-                            RecordD := RecordDTxt + CR;
+                            RecordD := RecordDTxt + CR + LF; //++CAT.002 added + LF
                         end;
                     }
 
@@ -176,7 +177,7 @@ xmlport 58800 "CAT Canada BMO AFT PAD 1464"
                 {
                     trigger OnBeforePassVariable()
                     begin
-                        RecordZ := RecordZTxt + CR;
+                        RecordZ := RecordZTxt + CR + LF; //++CAT.002 added + LF
                     end;
                 }
 
@@ -220,6 +221,7 @@ xmlport 58800 "CAT Canada BMO AFT PAD 1464"
     trigger OnPreXmlPort()
     begin
         CR[1] := 13;
+        LF[1] := 10; //++CAT.002
         FileDate := Today;
         InitData;
     end;
@@ -448,6 +450,7 @@ xmlport 58800 "CAT Canada BMO AFT PAD 1464"
         RecordDTxt: Text;
         RecordZTxt: Text;
         CR: Text[1];
+        LF: Text[1]; //++CAT.002
         DCount: Integer;
         DControlTotal: Decimal;
         CCount: Integer;

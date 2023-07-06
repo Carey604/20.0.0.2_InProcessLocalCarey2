@@ -2,7 +2,7 @@
   "id": "3a38e0ef-8695-492f-8d1f-0674ea998bce",
   "name": "Catapult Canadian EFT Fields",
   "publisher": "Catapult",
-  "version": "20.0.0.2",
+  "version": "21.3.0.1",
   "brief": "",
   "description": "",
   "privacyStatement": "",
@@ -15,18 +15,18 @@
       "id": "63ca2fa4-4f03-4f2b-a480-172fef340d3f",
       "publisher": "Microsoft",
       "name": "System Application",
-      "version": "20.0.0.0"
+      "version": "21.2.0.0"
     },
     {
       "id": "437dbf0e-84ff-417a-965d-ed2bb9650972",
       "publisher": "Microsoft",
       "name": "Base Application",
-      "version": "20.0.0.0"
+      "version": "21.2.0.0"
     }
   ],
   "screenshots": [],
-  "platform": "20.0.0.0",
-  "application": "20.0.0.0",
+  "platform": "21.0.0.0",
+  "application": "21.3.0.0",
   "idRanges": [
     {
       "from": 50000,
@@ -39,5 +39,5 @@
     "allowDownloadingSource": true,
     "includeSourceInSymbolFile": true
   },
-"runtime": "9.0"
+"runtime": "10.0"
 }

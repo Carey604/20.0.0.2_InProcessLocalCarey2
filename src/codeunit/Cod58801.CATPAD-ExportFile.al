@@ -2,6 +2,7 @@ codeunit 58801 "CAT Canada AFT PAD-Export File"
 {
     // CAT.001 2022-01-05 CL - copied from 1230 "SEPA DD-Export File"
     //      - Change export file name extension 
+    // CAT.002 2022-06-09 CL - for ACH PPD filename. Add prefix to filename.
     TableNo = "Direct Debit Collection Entry";
 
     trigger OnRun()
@@ -26,7 +27,8 @@ codeunit 58801 "CAT Canada AFT PAD-Export File"
         DirectDebitCollection.LockTable();
         DirectDebitCollection.DeletePaymentFileErrors;
         Commit();
-        if not Export(Rec, BankAccount.GetDDExportXMLPortID, DirectDebitCollection.Identifier) then
+        //--CAT.002if not Export(Rec, BankAccount.GetDDExportXMLPortID, DirectDebitCollection.Identifier) then
+        if not Export(Rec, BankAccount.GetDDExportXMLPortID, StrSubstNo('%1%2', BankAccount."CAT ACH PAD Filename Prefix", DirectDebitCollection.Identifier)) then //++CAT.002
             Error('');
 
         DirectDebitCollectionEntry.SetRange("Direct Debit Collection No.", DirectDebitCollection."No.");

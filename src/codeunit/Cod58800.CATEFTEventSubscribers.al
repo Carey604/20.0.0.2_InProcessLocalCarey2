@@ -7,6 +7,7 @@ codeunit 58800 "CAT EFT Event Subscribers"
 //      - When exporting direct debit file, the system should use "Bank Exprt/Import Setup"."Processing Codeunit ID". Currently, is
 //        hardcoded to run CODEUNIT::"SEPA DD-Export File" instead.
 //      - set custom field in "Payment Export Data" table to save the customer bank account systemid
+// CAT.006 2022-01-13 CL - fix settle date calculations. if 0d use SettleDate.
 {
 
     trigger OnRun()
@@ -142,12 +143,25 @@ codeunit 58800 "CAT EFT Event Subscribers"
         ACHRBDetail."CAT Payment Date Year" := DATE2DMY(SettleDate, 3);
         ACHRBDetail."CAT Payment Date Day (Julian)" := CATConvertToJulianDate(TempEFTExportWorkset."Settle Date", 0);
         ACHRBDetail.CATFileCreationDateCYYDDD := '0' + FORMAT(CATConvertToJulianDate(Today, 1));
-        IF TempEFTExportWorkset."Settle Date" <> 0D then
-            ACHRBDetail.CATPaymentDateCYYDDD := '0' + FORMAT(CATConvertToJulianDate(TempEFTExportWorkset."Settle Date", 1))
-        else
-            ACHRBDetail.CATPaymentDateCYYDDD := '0' + FORMAT(CATConvertToJulianDate(Today, 1));
-        ACHRBDetail.CATPaymentDateDDMMYY := Format(TempEFTExportWorkset."Settle Date", 0, '<Day,2><Month,2><Year,2>');
-        ACHRBDetail.CATPaymentDateMMDDYY := Format(TempEFTExportWorkset."Settle Date", 0, '<Month,2><Day,2><Year,2>');
+        //>>CAT.006
+        IF TempEFTExportWorkset."Settle Date" <> 0D then begin
+            ACHRBDetail.CATPaymentDateCYYDDD := '0' + FORMAT(CATConvertToJulianDate(TempEFTExportWorkset."Settle Date", 1));
+            ACHRBDetail.CATPaymentDateDDMMYY := Format(TempEFTExportWorkset."Settle Date", 0, '<Day,2><Month,2><Year,2>');
+            ACHRBDetail.CATPaymentDateMMDDYY := Format(TempEFTExportWorkset."Settle Date", 0, '<Month,2><Day,2><Year,2>');
+        end else begin
+            ACHRBDetail.CATPaymentDateCYYDDD := '0' + FORMAT(CATConvertToJulianDate(SettleDate, 1));
+            ACHRBDetail.CATPaymentDateDDMMYY := Format(SettleDate, 0, '<Day,2><Month,2><Year,2>');
+            ACHRBDetail.CATPaymentDateMMDDYY := Format(SettleDate, 0, '<Month,2><Day,2><Year,2>');
+        end;
+        //<<CAT.006
+        //>>CAT.006 start delete
+        // IF TempEFTExportWorkset."Settle Date" <> 0D then
+        //     ACHRBDetail.CATPaymentDateCYYDDD := '0' + FORMAT(CATConvertToJulianDate(TempEFTExportWorkset."Settle Date", 1))
+        // else
+        //     ACHRBDetail.CATPaymentDateCYYDDD := '0' + FORMAT(CATConvertToJulianDate(Today, 1));
+        // ACHRBDetail.CATPaymentDateDDMMYY := Format(TempEFTExportWorkset."Settle Date", 0, '<Day,2><Month,2><Year,2>');
+        // ACHRBDetail.CATPaymentDateMMDDYY := Format(TempEFTExportWorkset."Settle Date", 0, '<Month,2><Day,2><Year,2>');
+        //<<CAT.006 end delete
         ACHRBDetail.CATFileCreationDateDDMMYY := Format(Today, 0, '<Day,2><Month,2><Year,2>');
         ACHRBDetail.CATFileCreationDateMMDDYY := Format(Today, 0, '<Month,2><Day,2><Year,2>');
     end;
