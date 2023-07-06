@@ -11,12 +11,14 @@
             //"tenant": "f05ddbab-9e52-48b9-a4fb-ea6d7913a200", //signal.vin
             //"tenant": "6722eeb0-afe1-48a0-bc9c-ffa5d6f36775", //vcc
             //"environmentName": "CampusSupport-Sandbox2",
-            "tenant": "dd81043f-2698-452c-8a46-1b7355270912", //tricorp
-            "name": "Sandbox",
+            //"tenant": "dd81043f-2698-452c-8a46-1b7355270912", //tricorp
+            //"name": "Sandbox",
+            //"environmentType": "Sandbox",
+            "tenant": "b39979aa-1691-4c50-b89f-fb8bc35e9e09", //Cermaq
+            "name": "Cermaq Sandbox",
             "environmentType": "Sandbox",
-            //"environmentName": "Sandbox_01_05_22", 
-            "environmentName": "BCFunctionTest", //BCFunctionTest
-            "startupCompany": "1039583 B.C. Ltd.",
+            "environmentName": "CCA-SandboxDev",
+            "startupCompany": "Cermaq Canada",
             "startupObjectType": "Page",
             "startupObjectId": 256, // Payment Journal
             //"schemaUpdateMode": "Recreate",

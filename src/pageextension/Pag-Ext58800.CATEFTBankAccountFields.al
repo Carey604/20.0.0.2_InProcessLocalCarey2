@@ -1,6 +1,8 @@
 pageextension 58800 "CAT EFT Bank Account Fields" extends "Bank Account Card"
 {
     // CAT.001 2022-06-06 CL - add fields to existing pagext. Used for ACH PAD (Pre-authorized debit)
+    // CAT.002 2023-07-06 CL - add field to control whether to export Amount instead of Amount (LCY). See codeunit 58800.
+
     layout
     {
         addafter(Transfer)
@@ -125,6 +127,13 @@ pageextension 58800 "CAT EFT Bank Account Fields" extends "Bank Account Card"
                     ToolTip = 'Specifies the string to be prefixed to the export filename for pre-arranged payment or deposit';
                 }
                 //<<CAT.001
+                //>>CAT.002
+                field("CAT Use Src.Curr.Amt. EFT Exp."; Rec."CAT Use Src.Curr.Amt. EFT Exp.")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies whether to export the Amount (the non LCY amount) to the EFT export file. If false, the system will export what BC normally exports, which is the Amount (LCY) value (the amount in home currency).';
+                }
+                //<<CAT.002
             }
         }
     }

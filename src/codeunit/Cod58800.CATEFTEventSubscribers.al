@@ -8,6 +8,9 @@ codeunit 58800 "CAT EFT Event Subscribers"
 //        hardcoded to run CODEUNIT::"SEPA DD-Export File" instead.
 //      - set custom field in "Payment Export Data" table to save the customer bank account systemid
 // CAT.006 2022-01-13 CL - fix settle date calculations. if 0d use SettleDate.
+// CAT.007 2023-07-06 CL - add ability to use Amount instead of Amount (LCY) in EFT Export.
+//      "EFT Export"."Amount (LCY)" is used downstream as the value to export to eft file. If configured, assign genjnlline."Amount" to the field instead of genjnlline."Amount (LCY)" so that the
+//      Amount in foreign currency is used. e.g. if is USD bank account but using CA export format, you may want to send the USD value, not the converted lcy amount, to the file.
 {
 
     trigger OnRun()
@@ -22,6 +25,7 @@ codeunit 58800 "CAT EFT Event Subscribers"
     //For some reason, the OnBeforeInsert, OnInsert, and OnAfterInsert triggers never fire in the eft export table. Put the code here instead.
     var
         GenJnlLine: Record "Gen. Journal Line";
+        BankAccount: Record "Bank Account";//++CAT.007
     begin
         if GenJnlLine.get(Rec."Journal Template Name", Rec."Journal Batch Name", Rec."Line No.") then begin
             Rec."CAT Original Amount (LCY)" := Rec."Amount (LCY)";
@@ -29,7 +33,12 @@ codeunit 58800 "CAT EFT Event Subscribers"
         end;
         //Bank.Get(Rec."Bank Account No.");
         //if Bank."CAT Skip EFT Curr. Code Check" then
-        //    Rec."Amount (LCY)" := GenJnlLine.Amount;
+        //Rec."Amount (LCY)" := GenJnlLine.Amount;
+        //>>CAT.007
+        BankAccount.Get(Rec."Bank Account No.");
+        if BankAccount."CAT Use Src.Curr.Amt. EFT Exp." then
+            Rec."Amount (LCY)" := GenJnlLine.Amount;
+        //<<CAT.007
     end;
 
     [EventSubscriber(ObjectType::Table, database::"Check Ledger Entry", 'OnBeforeInsertEvent', '', false, false)]
@@ -69,8 +78,10 @@ codeunit 58800 "CAT EFT Event Subscribers"
     local procedure OnAfterSubstituteReport(ReportId: Integer; RunMode: Option; RequestPageXml: Text; RecordRef: RecordRef; var NewReportId: Integer);
     begin
         case ReportId of
-            report::"Export Electronic Payments": //10083
-                NewReportId := 58800;
+        //>>CAT.007 start delete - use Report Selection - Purchase Usage Vendor Remittance to select the report.
+        // report::"Export Electronic Payments": //10083
+        //     NewReportId := 58800;
+        //<<CAT.007 end delete
         end;
     end;
 

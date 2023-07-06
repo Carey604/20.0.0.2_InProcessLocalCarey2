@@ -1,6 +1,7 @@
 tableextension 58803 "CATEFTBankAccount" extends "Bank Account"
 {
     // CAT.001 2022-06-06 CL - add fields to existing tabext. Used for ACH PAD (Pre-authorized debit)
+    // CAT.002 2023-07-06 CL - add field to control whether to export Amount instead of Amount (LCY). See codeunit 58800.
     fields
     {
         field(58800; CATBankShortName; Text[15])
@@ -88,5 +89,11 @@ tableextension 58803 "CATEFTBankAccount" extends "Bank Account"
             Caption = 'ACH PPD Filename Prefix';
         }
         //<<CAT.001
+        //>>CAT.002
+        field(58832; "CAT Use Src.Curr.Amt. EFT Exp."; Boolean)
+        {
+            Caption = 'Use Source Currency Amount in EFT Export';
+        }
+        //<<CAT.002
     }
 }
